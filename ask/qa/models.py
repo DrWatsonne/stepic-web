@@ -10,14 +10,14 @@ class Question(models.Model):
     text = models.TextField()
     added_at = models.DateTimeField()
     rating = models.IntegerField()
-    author = models.OneToOneField(MyUser)
-    likes = models.ManyToManyField(MyUser)
+    author = models.ForeignKey(User)
+    likes = models.ManyToManyField(User, related_name='question_like_user')
 
 class Answer(models.Model):
     text = models.TextField()
     added_at = models.DateTimeField()
     question = models.ForeignKey(Question)
-    author = models.OneToOneField(MyUser)
+    author = models.ForeignKey(User)
 
 
 # Create your models here.
